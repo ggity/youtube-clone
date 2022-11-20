@@ -1,0 +1,313 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.header-menu-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.menu-btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.logo-link {
+    height: 40px;
+    max-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.youtube-logo {
+    height: 24px;
+}
+
+.search-bar {
+    display: flex;
+    flex-grow: 1;
+    max-width: 728px;
+    margin: 0 2rem 0 4rem;
+}
+
+.search-input {
+    width: 100%;
+    font-size: inherit;
+    padding: .4em;
+    border: 1px solid #777;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* search-input je input, treba stilizovati focus visible  */
+
+.search-btn {
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    border: 1px solid #777;
+    background-color: #F8F8F8;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+    background-color: #F0F0F0;
+}
+
+.header-icons {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header-icon {
+    text-decoration: none;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #606060;
+    transition: background-color 250ms ease-out;
+}
+
+.header-icon:active {
+    background-color: rgba(0, 0, 0, .3);
+
+}
+
+.search-bar .header-icon {
+    margin-left: .5em;
+}
+
+.header-channel-icon {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    background-color: #AAA;
+}
+
+/*  */
+/* kod ispod stilizuje kateogirje videa */
+.categories {
+    padding: 1rem 2rem;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    width: 100%;
+}
+
+.category-section {
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    overflow: hidden;
+}
+
+.category {
+    margin-right: 1rem;
+    word-wrap: none;
+    white-space: nowrap;
+    border: 1px solid #CCC;
+    border-radius: 900px;
+    background-color: #E7E7E7;
+    padding: .5rem 1rem;
+    font-size: inherit;
+    cursor: pointer;
+    transition: background-color 150ms;
+}
+
+.category:hover {
+    background-color: #DDD;
+}
+
+.category.active {
+    background-color: #606060;
+    color: white;
+    border-color: #EEE;
+}
+
+.category:last-child {
+    margin-right: 0;
+}
+
+
+
+/*  */
+/* Ispod kod koji stilizuje dio sa videima */
+.videos {
+    background-color: #F9F9F9;
+}
+
+.video-section {
+    display: grid;
+    /* pupuni tabelu sa sto vise celija to znaci autofl, koje se minimalno biti siroke 250px, tj nikada nece biti uze od 250px, a mogu biti i sire, a najvise sto mogu biti je 1fr frakcija, odnosno sve ce biti iste sirine  */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /* razmak izmedju redova i kolona */
+    gap: 3rem 1rem;
+    /* udaljenost od gore i dole  */
+    padding: 3rem 0;
+    margin: 0 1.5rem;
+    border-top: 4px solid #CCC;
+}
+
+/* za svaku video sekciju koja je prvo dijete u nekom elementu nece se prikazivati gornji border */
+.video-section:first-child {
+    border-top: none;
+}
+
+/* nas video kontejner, video sa slikom, preview-om, duzinom trajanja, info o kanalu... */
+.video-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* sve ono sto se desava kada se predje misem preko jednog videa */
+.video-container:hover .hover-menu-btn {
+    visibility: visible;
+    /* background-color: rebeccapurple; */
+
+}
+
+/* pozicija relativna radi informacija o duzini trajanja koje cemo smjestiti apsolutno */
+.thumbnail {
+    position: relative;
+    display: flex;
+}
+
+/* informacije o duzini trajanja videa */
+.thumbnail::before {
+    content: attr(data-duration);
+    position: absolute;
+    background-color: rgba(0, 0, 0, .85);
+    color: white;
+    right: 5px;
+    bottom: 5px;
+    padding: .1em .3em;
+    border-radius: .3em;
+    font-size: .9rem;
+}
+
+/* kao naslovna slika naseg videa */
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+    min-width: 250px;
+    min-height: 150px;
+    background-color: #AAA;
+}
+
+/* sve ispod slike */
+.video-bottom-section {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.hover-menu-btn {
+    max-width: 40px;
+    max-height: 40px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: inherit;
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* display: none; */
+    visibility: hidden;
+}
+
+.hover-menu-btn path {
+    /* width: 50%; */
+    /* height: 50%; */
+    /* fill: wheat; */
+}
+
+/* ikonica kanala koja je i link */
+.channel-icon {
+    margin-right: .75em;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    background-color: #AAA;
+}
+
+/* svi ostali detalji */
+.video-details {
+    display: flex;
+    flex-direction: column;
+}
+
+/* naslov */
+.video-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: .5rem;
+    text-decoration: none;
+    color: black;
+}
+
+/* ime kanala */
+.video-channel-name {
+    margin-bottom: .1rem;
+    text-decoration: none;
+}
+
+/* stanja kada predjemo misem */
+.video-channel-name:hover {
+    color: #111;
+}
+
+.video-channel-name,
+.video-metadata {
+    color: #555;
+}
+
+/* podaci o kolicini pregleda.. */
+.video-metadata {}
+
+/* h2 naslov koji znaci da je video specijalna sekcija sadrzi se od naslova sekcije i tastera za ne prikazivanje te sekcije :D */
+.video-special-section {
+    /* 1 / -1 znaci da ce se ovaj div prostirati cijelom duzinom reda */
+    grid-column: 1 / -1;
+    margin: -.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .5rem;
+}
+
+/* taster za ne prikazivanje sekcije :D */
+.video-special-section-close {
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 2rem;
+    color: #555;
+    cursor: pointer;
+}
